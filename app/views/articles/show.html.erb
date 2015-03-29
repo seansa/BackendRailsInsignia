@@ -2,6 +2,9 @@
 <div>
 	<%= @article.body %>
 </div>
+<% unless @article.user.nil? %>
+<p>Escrito por: <%= @article.user.email %> </p>
+<% end %>
 <div class="top-space">
 	<%= link_to "Editar", edit_article_path(@article), class:"btn be-red white"%>
 </div>
