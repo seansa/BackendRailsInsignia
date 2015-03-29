@@ -35,9 +35,11 @@ a,a:visited{
 .large-padding{
 	padding: 8px 5px;
 }
-.field{
+
+.field,.top-space,.actions{
 	margin-top:1em;
 }
+
 .form-height{
 	height: 250px;
 }
@@ -50,8 +52,8 @@ a,a:visited{
 	padding: 10px 0px;
 	font-size: 1.2em;
 }
-.top-space{
-	margin-top: 1em;
+.text-left{
+	text-align: left;
 }
 .style-new-article{
 	width: 80%;
