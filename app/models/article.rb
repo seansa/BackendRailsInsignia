@@ -2,6 +2,7 @@ class Article < ActiveRecord::Base
 	belongs_to :user
  	validates :title, presence: true, length: { minimum: 5 }, uniqueness: true
 	validates :body, presence: true, length: { minimum: 20 }, uniqueness: true
+
 	before_save :set_visits_count
 
 	def update_visits_count

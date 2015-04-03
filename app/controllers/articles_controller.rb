@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def show
-		@article.update_visits_count
+		@article.update_visits_count	
 	end
 
 	def new
@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
+		@article = Article.find(params[:id])
 	end
 
 	def create
@@ -28,11 +29,13 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
+		@article = Article.find(params[:id])
 		@article.destroy
 		redirect_to articles_path
 	end
 
 	def update
+		@article = Article.find(params[:id])
 		if @article.update(article_params)
 			redirect_to @article
 		else
@@ -40,8 +43,7 @@ class ArticlesController < ApplicationController
 		end
 	end
 
-	protected
-
+	private
 	# def validate_user
 	#	redirect_to new_user_session_path, notice: "Necesitas iniciar sesíon"
 	#end
@@ -50,7 +52,8 @@ class ArticlesController < ApplicationController
 		@article = Article.find(params[:id])
 	end
 
-	def article_params
-		params.require(:article).permit(:title,:body)
-	end
+ 	def article_params
+ 		params.require(:article).permit(:title,:body)
+ 	end
+
 end
