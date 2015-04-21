@@ -1,3 +1,26 @@
-<% if user_signed_in? %>
-	<h1>Bienvenido <%= current_user.email %></h1>
-<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<% if user_signed_in? %>
+				<h3>Bienvenido <%= current_user.email %></h3>
+			<% end %>
+			<% @articles.each do |post| %>
+		      <div>
+			      <h2><%= link_to post.title, post %></h2>
+			  </div>
+			<% end %>
+		</div>
+		<div class="col-xs-4">
+			<div class="box-crear-post">
+				<% if user_signed_in? %>
+					<h3 class="no-margin center">¡Crea un post y comparte el conocimiento!</h3>
+					<div class="btn-box"><%= link_to "¡Crea tu Post ahora!", new_article_path %></div>
+				<% else %>
+					<h3 class="no-margin center">¡Sabias que puedes comenzar a publicar articulos con solo registrarte!</h3>
+					<div class="btn-box"><%= link_to "¡Registrate ahora!", new_user_registration_path %></div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+

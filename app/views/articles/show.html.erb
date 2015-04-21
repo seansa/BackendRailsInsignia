@@ -1,10 +1,25 @@
 <h1><%= @article.title %></h1>
 <div>
 	<%= @article.body %>
+</div class="field">
+	<h3>Comentarios:</h3>
+	<%= render "comments/form" %>
+	<ul id="comments-box">
+		<% @article.comments.each do |comment|%>
+		<li>
+			<%= comment.body %> - <%= comment.user.email %>
+		</li>
+		<% end %>
+	</ul>
+<div>
+	
 </div>
 <% unless @article.user.nil? %>
 <p>Escrito por: <%= @article.user.email %> - Visto: <%= @article.visits_count %> veces </p>
 <% end %>
-<div class="top-space">
-	<%= link_to "Editar", edit_article_path(@article), class:"btn be-red white"%>
-</div>
+
+<% if user_signed_in? %>
+	<div class="top-space">
+		<%= link_to "Editar", edit_article_path(@article), class:"btn be-red white"%>
+	</div>
+<% end %>
