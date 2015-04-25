@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :articles
   has_many :comments
+  has_many :favorites
+  has_many :favorited_articles, through: :favorites, source: :article
+
+	def already_favorited?(article)
+    favorited_articles.where(id: article.id).count > 0
+  end
+
 end

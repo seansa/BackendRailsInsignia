@@ -16,6 +16,13 @@
 </div>
 <% unless @article.user.nil? %>
 <p>Escrito por: <%= @article.user.email %> - Visto: <%= @article.visits_count %> veces </p>
+		
+	<% unless current_user && current_user.already_favorited?(@article) %>
+      <%= link_to "Favorite", favorite_path(@article, type: "favorite"), method: :put %>
+        <% else %>
+	<%= link_to "Unfavorite", favorite_path(@article, type: "unfavorite"), method: :put %>
+      <% end -%>
+
 <% end %>
 
 <% if user_signed_in? %>
