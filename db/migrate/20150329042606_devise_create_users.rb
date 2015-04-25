@@ -33,6 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :permission_level
 
+      t.boolean :admin, default: false
+
       t.timestamps
     end
 

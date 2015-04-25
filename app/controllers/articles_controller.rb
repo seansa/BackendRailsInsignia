@@ -21,11 +21,15 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@article = current_user.articles.new(article_params)
-		if @article.save
-			redirect_to @article
+		if current_user.admin?
+			@article = current_user.articles.new(article_params)
+			if @article.save
+				redirect_to @article
+			else
+				render :new
+			end
 		else
-			render :new
+			redirect_to root_path
 		end
 	end
 

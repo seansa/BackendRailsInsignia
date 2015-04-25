@@ -1,12 +1,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-8">
-			<% if user_signed_in? %>
+			<!--<% if user_signed_in? %>
 				<h3>Bienvenido <%= current_user.email %></h3>
-			<% end %>
+			<% end %>-->
+			<h2>Los 5 post mas vistos!</h2>
 			<% @articles.each do |post| %>
 		      <div>
-			      <h2><%= link_to post.title, post %></h2>
+			      <h3><%= link_to post.title, post %></h3>
 			  </div>
 			<% end %>
 		</div>
