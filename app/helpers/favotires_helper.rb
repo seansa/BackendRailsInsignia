@@ -1,0 +1,2 @@
+module FavotiresHelper
+end
