@@ -8,6 +8,11 @@
 		<% @article.comments.each do |comment|%>
 		<li>
 			<%= comment.body %> - <%= comment.user.email %>
+			 <% unless current_user && current_user.already_flagged?(comment) %>
+				<%= link_to "Report", flags_path(@article, id: comment, type: "report"), method: :put  %>
+			   <% else %>
+			   <%= link_to "UnReport", flags_path(@article, id: comment, type: "unreport"), method: :put  %>
+			 <% end -%>
 		</li>
 		<% end %>
 	</ul>
@@ -15,13 +20,13 @@
 	
 </div>
 <% unless @article.user.nil? %>
-<p>Escrito por: <%= @article.user.email %> - Visto: <%= @article.visits_count %> veces </p>
-		
 	<% unless current_user && current_user.already_favorited?(@article) %>
       <%= link_to "Favorite", favorite_path(@article, type: "favorite"), method: :put %>
         <% else %>
 	<%= link_to "Unfavorite", favorite_path(@article, type: "unfavorite"), method: :put %>
       <% end -%>
+
+<p>Escrito por: <%= @article.user.email %> - Visto: <%= @article.visits_count %> veces </p>
 
 <% end %>
 

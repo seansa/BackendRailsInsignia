@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
 	def show
 		@article.update_visits_count	
 		@comment = Comment.new
+		@article = Article.find(params[:id])
+		@commentid = Comment.find(params[:id])
 	end
 
 	def new

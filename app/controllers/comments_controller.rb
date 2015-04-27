@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:update, :destroy]
   before_action :set_article
 
+  
+
   # POST /comments
   # POST /comments.json
   def create
