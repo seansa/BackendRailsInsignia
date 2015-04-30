@@ -11,12 +11,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'spring'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'pry-rails'
 end
 
 group :production do
@@ -27,3 +21,10 @@ end
 
 gem 'devise'
 gem 'jquery-turbolinks'
+
+  gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
