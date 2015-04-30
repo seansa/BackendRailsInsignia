@@ -4,9 +4,15 @@
 			<li class="col-md">
 				<h1 class="no-margin" id="logo"> <%= link_to "HSSAIT", root_path %></h1>
 			</li>
-			<li class="col-md">
+			<% if user_signed_in? && current_user.admin? %>
+				<li class="col-md">
+					<%= link_to "Crear Nuevo Articulo", new_article_path %>
+				</li>
+			<% else %>
+				<li class="col-md">
 				<%= link_to "Inicio", root_path %>
 			</li>
+			<% end %>
 			<li class="col-md">
 				<%= link_to "Articulos", articles_path %>
 			</li>
