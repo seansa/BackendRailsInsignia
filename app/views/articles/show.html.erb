@@ -36,7 +36,7 @@
 		</ul>
 	</div>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.admin? %>
 	<div class="top-space">
 		<%= link_to "Editar", edit_article_path(@article), class:"btn be-red white"%>
 	</div>
