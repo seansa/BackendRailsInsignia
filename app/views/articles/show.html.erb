@@ -2,33 +2,39 @@
 <div>
 	<%= @article.body %>
 </div class="field">
-	<h3>Comentarios:</h3>
-	<%= render "comments/form" %>
-	<ul id="comments-box">
-		<% @article.comments.each do |comment|%>
-		<li>
-			<%= comment.body %> - <%= comment.user.email %>
-			 <% unless current_user && current_user.already_flagged?(comment) %>
-				<%= link_to "Report", flags_path(@article, id: comment, type: "report"), method: :put  %>
-			   <% else %>
-			   <%= link_to "UnReport", flags_path(@article, id: comment, type: "unreport"), method: :put  %>
-			 <% end -%>
-		</li>
-		<% end %>
-	</ul>
-<div>
 	
+<div>
+	<% unless current_user && current_user.already_favorited?(@article) %>
+      <%= link_to "Marcar como Favorito", favorite_path(@article, type: "favorite"), method: :put, class:"lightblue" %>
+        <% else %>
+	<%= link_to "Quitar de favorito", favorite_path(@article, type: "unfavorite"), method: :put, class:"lightblue" %>
+      <% end -%>
 </div>
 <% unless @article.user.nil? %>
-	<% unless current_user && current_user.already_favorited?(@article) %>
-      <%= link_to "Favorite", favorite_path(@article, type: "favorite"), method: :put %>
-        <% else %>
-	<%= link_to "Unfavorite", favorite_path(@article, type: "unfavorite"), method: :put %>
-      <% end -%>
 
 <p>Escrito por: <%= @article.user.email %> - Visto: <%= @article.visits_count %> veces </p>
 
 <% end %>
+
+<div class="comentarios">
+		<h3>Comentarios:</h3>
+		<%= render "comments/form" %>
+		<ul id="comments-box">
+			<% @article.comments.each do |comment|%>
+			<li>
+				<%= comment.body %> - <%= comment.user.email %>
+				 <% unless current_user && current_user.already_flagged?(comment) %>
+					<%= link_to " Reportar comentario", flags_path(@article, id: comment, type: "report"), method: :put, class:"red" %>
+				   <% else %>
+				   <%= link_to " Quitar Reporte del comentario", flags_path(@article, id: comment, type: "unreport"), method: :put, class:"red" %>
+				 <% end -%>
+				 <% if user_signed_in? && current_user.admin? %>
+				 	<%= link_to " - Eliminar comentario", article_comment_path(@article, id: comment) , method: :delete, class:"red" %>
+				 <% end %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
 
 <% if user_signed_in? %>
 	<div class="top-space">
