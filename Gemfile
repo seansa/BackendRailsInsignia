@@ -9,7 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-group :development, :test do
+group :development do
   gem 'sqlite3'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -19,7 +19,7 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-group :production do
+group :production, :test do
 	gem 'pg'
 	gem 'puma'
 	gem 'rails_12factor'
